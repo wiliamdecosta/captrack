@@ -70,7 +70,7 @@
                         <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password" required="" /> </div>
                 </div>
                 <div class="form-actions">
-                    <button type="submit" class="btn red pull-right"> Login </button>
+                    <button type="submit" class="btn green pull-right"> Login </button>
                 </div>
             </form>
             <!-- END LOGIN FORM -->
