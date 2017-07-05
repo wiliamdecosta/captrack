@@ -570,6 +570,16 @@ class Abstract_model extends  CI_Model {
         return $row['seq'];
     }
 
+    public function generate_seq_id($table_name) {
+        $seq_name = $table_name."_seq";
+        $sql = "select $seq_name.nextval as seq from dual";
+        $query = $this->db->query($sql);
+        $row = $query->row_array();
+
+        return (int)$row['seq'];
+    }
+
+
     public function setJQGridParam($param) {
         $this->jqGridParamSearch = $param;
     }
