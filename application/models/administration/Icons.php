@@ -39,9 +39,9 @@ class Icons extends Abstract_model {
         if($this->actionType == 'CREATE') {
             //do something
             // example :
-            $this->record['created_date'] = date('Y-m-d');
+            $this->db->set('created_date',"to_date('".date('Y-m-d')."','yyyy-mm-dd')",false);
             $this->record['created_by'] = $userdata['user_name'];
-            $this->record['updated_date'] = date('Y-m-d');
+            $this->db->set('updated_date',"to_date('".date('Y-m-d')."','yyyy-mm-dd')",false);
             $this->record['updated_by'] = $userdata['user_name'];
 
             $this->record[$this->pkey] = $this->generate_id($this->table, $this->pkey);
@@ -49,7 +49,7 @@ class Icons extends Abstract_model {
         }else {
             //do something
             //example:
-            $this->record['updated_date'] = date('Y-m-d');
+            $this->db->set('updated_date',"to_date('".date('Y-m-d')."','yyyy-mm-dd')",false);
             $this->record['updated_by'] = $userdata['user_name'];
             //if false please throw new Exception
         }
