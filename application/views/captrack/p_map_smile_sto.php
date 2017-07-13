@@ -6,7 +6,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Master STO</span>
+            <span>Map Smile STO</span>
         </li>
     </ul>
 </div>
@@ -19,6 +19,13 @@
     </div>
 </div>
 
+<?php $this->load->view('lov/lov_p_master_sto'); ?>
+
+<script>
+function showLOVSTO(id, code) {
+    modal_lov_p_master_sto_show(id, code);
+}
+</script>
 <script>
 
     jQuery(function($) {
@@ -26,32 +33,17 @@
         var pager_selector = "#grid-pager";
 
         jQuery("#grid-table").jqGrid({
-            url: '<?php echo WS_JQGRID."captrack.p_master_sto_controller/crud"; ?>',
+            url: '<?php echo WS_JQGRID."captrack.p_map_smile_sto_controller/crud"; ?>',
             datatype: "json",
             mtype: "POST",
             colModel: [
-                {label: 'ID', name: 'p_master_sto_id', key: true, width: 5, sorttype: 'number', editable: true, hidden: true},
-                {label: 'ORG PATH',name: 'org_path',width: 500, align: "left",editable: false},
-                {label: 'ORG PATH 1',name: 'org_path1',width: 100, align: "left",editable: true,
-                    editoptions: {
-                        size: 30,
-                        maxlength:32
-                    },
-                    editrules: {required: false}
-                },
-                {label: 'ORG PATH 2',name: 'org_path2',width: 200, align: "left",editable: true,
-                    editoptions: {
-                        size: 30,
-                        maxlength:32,
-                        defaultValue: 'PT Telkom Indonesia'
-                    },
-                    editrules: {required: true}
-                },
-                {label: 'ORG_PATH3', name: 'org_path3', width: 200, align: "left", editable: true, hidden:false,
+                {label: 'ID', name: 'p_map_smile_sto_id', key: true, width: 5, sorttype: 'number', editable: true, hidden: true},
+                {label: 'KEY1', name: 'key1', width: 350, align: "left", editable: false, hidden:false},
+                {label: 'NM_DIVISI', name: 'nm_divisi', width: 200, align: "left", editable: true, hidden:false,
                     editrules: {edithidden: true, required:true},
                     edittype: 'select',
                     editoptions: {
-                        dataUrl: "<?php echo WS_JQGRID.'captrack.p_master_sto_controller/html_select_options_org_path3'; ?>",
+                        dataUrl: "<?php echo WS_JQGRID.'captrack.p_map_smile_sto_controller/html_select_options_nm_divisi'; ?>",
                         dataInit: function(elem) {
                             $(elem).width(200);  // set the width which you need
                         },
@@ -68,37 +60,64 @@
                         }
                     }
                 },
-                {label: 'ORG PATH 4',name: 'org_path4',width: 200, align: "left",editable: true,
+                {label: 'NM_WITEL',name: 'nm_witel',width: 200, align: "left",editable: true,
                     editoptions: {
                         size: 30,
                         maxlength:32
                     },
                     editrules: {required: true}
                 },
-                {label: 'ORG PATH 5',name: 'org_path5',width: 200, align: "left",editable: true,
+                {label: 'NM_LOKSTO',name: 'nm_loksto',width: 200, align: "left",editable: true,
                     editoptions: {
                         size: 30,
                         maxlength:32
                     },
                     editrules: {required: true}
                 },
-                {label: 'ORG PATH 6',name: 'org_path6',width: 200, align: "left",editable: false},
-                {label: 'STO 3',name: 'sto3',width: 150, align: "left",editable: true,
+                {label: 'STO3', name: 'sto3_display', width: 150, align: "left", editable: false, hidden:false},
+                {label: 'STO3',
+                    name: 'sto3',
+                    width: 200,
+                    sortable: true,
+                    editable: true,
+                    hidden: true,
+                    editrules: {edithidden: true, required:false},
+                    edittype: 'custom',
                     editoptions: {
-                        size: 30,
-                        maxlength:32
-                    },
-                    editrules: {required: true}
-                },
-                {label: 'REGSTO',name: 'regsto',width: 150, align: "left",editable: false},
-                {label: 'STONAME',name: 'stoname',width: 200, align: "left",editable: true,
-                    editoptions: {
-                        size: 30,
-                        maxlength:32
-                    },
-                    editrules: {required: true}
-                },
-                {label: 'RECODE', name: 'recode', width: 150, align: "left", editable: false, hidden:false}
+                        "custom_element":function( value  , options) {
+                            var elm = $('<span></span>');
+
+                            // give the editor time to initialize
+                            setTimeout( function() {
+                                elm.append('<input id="form_sto3_code" readonly type="text" class="FormElement form-control" placeholder="Choose STO3">'+
+                                        '<button class="btn btn-success" type="button" onclick="showLOVSTO(\'form_sto3_code\',\'form_sto3_code\')">'+
+                                        '   <span class="fa fa-search bigger-110"></span>'+
+                                        '</button>');
+                                $("#form_sto3_code").val(value);
+                                elm.parent().removeClass('jqgrid-required');
+                            }, 100);
+
+                            return elm;
+                        },
+                        "custom_value":function( element, oper, gridval) {
+
+                            if(oper === 'get') {
+                                return $("#form_sto3_code").val();
+                            } else if( oper === 'set') {
+                                $("#form_sto3_code").val(gridval);
+                                var gridId = this.id;
+                                // give the editor time to set display
+                                setTimeout(function(){
+                                    var selectedRowId = $("#"+gridId).jqGrid ('getGridParam', 'selrow');
+                                    if(selectedRowId != null) {
+                                        var code_display = $("#"+gridId).jqGrid('getCell', selectedRowId, 'sto3');
+                                        $("#form_sto3_code").val( code_display );
+                                    }
+                                },100);
+                            }
+                        }
+                    }
+                }
                 //{label: 'RECODE',name: 'recode',width: 300, align: "left",editable: false}
 
             ],
@@ -130,8 +149,8 @@
 
             },
             //memanggil controller jqgrid yang ada di controller crud
-            editurl: '<?php echo WS_JQGRID."captrack.p_master_sto_controller/crud"; ?>',
-            caption: "Master STO"
+            editurl: '<?php echo WS_JQGRID."captrack.p_map_smile_sto_controller/crud"; ?>',
+            caption: "Smile STO Mapper"
 
         });
 

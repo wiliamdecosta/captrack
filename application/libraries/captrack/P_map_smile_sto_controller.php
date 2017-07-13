@@ -1,16 +1,16 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
 * Json library
-* @class P_master_sto_controller
+* @class P_map_smile_sto_controller
 * @version 07/05/2015 12:18:00
 */
-class P_master_sto_controller {
+class P_map_smile_sto_controller {
 
     function read() {
 
         $page = getVarClean('page','int',1);
         $limit = getVarClean('rows','int',5);
-        $sidx = getVarClean('sidx','str','p_master_sto_id');
+        $sidx = getVarClean('sidx','str','p_map_smile_sto_id');
         $sord = getVarClean('sord','str','asc');
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
@@ -18,8 +18,8 @@ class P_master_sto_controller {
         try {
 
             $ci = & get_instance();
-            $ci->load->model('captrack/p_master_sto');
-            $table = $ci->p_master_sto;
+            $ci->load->model('captrack/p_map_smile_sto');
+            $table = $ci->p_map_smile_sto;
 
             $req_param = array(
                 "sort_by" => $sidx,
@@ -62,44 +62,7 @@ class P_master_sto_controller {
 
             $data['rows'] = $table->getAll();
             $data['success'] = true;
-            logging('view data master sto');
-        }catch (Exception $e) {
-            $data['message'] = $e->getMessage();
-        }
-
-        return $data;
-    }
-
-    function readLov() {
-
-        $start = getVarClean('current','int',0);
-        $limit = getVarClean('rowCount','int',5);
-
-        $sort = getVarClean('sort','str','p_master_sto_id');
-        $dir  = getVarClean('dir','str','asc');
-
-        $searchPhrase = getVarClean('searchPhrase', 'str', '');
-
-        $data = array('rows' => array(), 'success' => false, 'message' => '', 'current' => $start, 'rowCount' => $limit, 'total' => 0);
-
-        try {
-
-            $ci = & get_instance();
-            $ci->load->model('captrack/p_master_sto');
-            $table = $ci->p_master_sto;
-
-            if(!empty($searchPhrase)) {
-                $table->setCriteria("upper(org_path) like upper('%".$searchPhrase."%')");
-            }
-
-            $start = ($start-1) * $limit;
-            $items = $table->getAll($start, $limit, $sort, $dir);
-            $totalcount = $table->countAll();
-
-            $data['rows'] = $items;
-            $data['success'] = true;
-            $data['total'] = $totalcount;
-
+            logging('view data map smile sto');
         }catch (Exception $e) {
             $data['message'] = $e->getMessage();
         }
@@ -113,22 +76,22 @@ class P_master_sto_controller {
         $oper = getVarClean('oper', 'str', '');
         switch ($oper) {
             case 'add' :
-                permission_check('can-add-master-sto');
+                permission_check('can-add-map-smile-sto');
                 $data = $this->create();
             break;
 
             case 'edit' :
-                permission_check('can-edit-master-sto');
+                permission_check('can-edit-map-smile-sto');
                 $data = $this->update();
             break;
 
             case 'del' :
-                permission_check('can-delete-master-sto');
+                permission_check('can-delete-map-smile-sto');
                 $data = $this->destroy();
             break;
 
             default :
-                permission_check('can-view-master-sto');
+                permission_check('can-view-map-smile-sto');
                 $data = $this->read();
             break;
         }
@@ -140,8 +103,8 @@ class P_master_sto_controller {
     function create() {
 
         $ci = & get_instance();
-        $ci->load->model('captrack/p_master_sto');
-        $table = $ci->p_master_sto;
+        $ci->load->model('captrack/p_map_smile_sto');
+        $table = $ci->p_map_smile_sto;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -195,7 +158,7 @@ class P_master_sto_controller {
 
                 $data['success'] = true;
                 $data['message'] = 'Data added successfully';
-                logging('create data master sto');
+                logging('create data map smile sto');
 
             }catch (Exception $e) {
                 $table->db->trans_rollback(); //Rollback Trans
@@ -212,8 +175,8 @@ class P_master_sto_controller {
     function update() {
 
         $ci = & get_instance();
-        $ci->load->model('captrack/p_master_sto');
-        $table = $ci->p_master_sto;
+        $ci->load->model('captrack/p_map_smile_sto');
+        $table = $ci->p_map_smile_sto;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -267,7 +230,7 @@ class P_master_sto_controller {
 
                 $data['success'] = true;
                 $data['message'] = 'Data update successfully';
-                logging('update data master sto');
+                logging('update data map smile sto');
                 $data['rows'] = $table->get($items[$table->pkey]);
             }catch (Exception $e) {
                 $table->db->trans_rollback(); //Rollback Trans
@@ -283,8 +246,8 @@ class P_master_sto_controller {
 
     function destroy() {
         $ci = & get_instance();
-        $ci->load->model('captrack/p_master_sto');
-        $table = $ci->p_master_sto;
+        $ci->load->model('captrack/p_map_smile_sto');
+        $table = $ci->p_map_smile_sto;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -314,7 +277,7 @@ class P_master_sto_controller {
 
             $data['success'] = true;
             $data['message'] = $total.' Data deleted successfully';
-            logging('delete data master sto');
+            logging('delete data map smile sto');
             $table->db->trans_commit(); //Commit Trans
 
         }catch (Exception $e) {
@@ -326,16 +289,16 @@ class P_master_sto_controller {
         return $data;
     }
 
-    function html_select_options_org_path3() {
+    function html_select_options_nm_divisi() {
         try {
 
-            $items = array('REGIONAL 1 SUMATRA',
-                           'REGIONAL 2 JAKARTA',
-                           'REGIONAL 3 JAWA BARAT',
-                           'REGIONAL 4 JAWA TENGAH',
-                           'REGIONAL 5 JAWA TIMUR',
-                           'REGIONAL 6 KALIMANTAN',
-                           'REGIONAL 7 KTI'
+            $items = array('DIVRE I',
+                           'DIVRE II',
+                           'DIVRE III',
+                           'DIVRE IV',
+                           'DIVRE V',
+                           'DIVRE VI',
+                           'DIVRE VII'
                           );
 
             echo '<select>';
@@ -349,7 +312,6 @@ class P_master_sto_controller {
             exit;
         }
     }
-
 }
 
 /* End of file Icons_controller.php */

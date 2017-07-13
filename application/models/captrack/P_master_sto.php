@@ -50,12 +50,12 @@ class P_master_sto extends Abstract_model {
         if($this->actionType == 'CREATE') {
             //do something
             // example :
-            //$this->db->set('org_path',"CONCAT(org_path1, ('/'||org_path2||'/'||org_path3||'/'||org_path4||'/'||org_path5||'/'||org_path6))",false);
-            //$this->db->set('regsto',"CONCAT(org_path6, ('/'||recode))",false);
             $this->db->set('created_date',"to_date('".date('Y-m-d')."','yyyy-mm-dd')",false);
             $this->record['created_by'] = $userdata['user_name'];
             $this->db->set('updated_date',"to_date('".date('Y-m-d')."','yyyy-mm-dd')",false);
             $this->record['updated_by'] = $userdata['user_name'];
+
+            $this->record['org_path6'] = $this->record['sto3'];
             $this->record['org_path'] = $this->record['org_path1'] . '/' .
                                         $this->record['org_path2'] . '/' .
                                         $this->record['org_path3'] . '/' .
@@ -63,10 +63,7 @@ class P_master_sto extends Abstract_model {
                                         $this->record['org_path5'] . '/' .
                                         $this->record['org_path6'];
 
-            //string org_path3 di explode jd array
-            //$this->record['recode'] diisi string "RE".                                        
             $arr_org_path3 = explode(" " , $this->record['org_path3']);
-            //$this->db->set('recode',"'RE"."$arr_org_path3[1]"."'",false);
             $this->record['recode'] = "RE".$arr_org_path3[1];
 
             $this->record['regsto'] = $this->record['recode'].'/'.$this->record['org_path6'];
@@ -75,10 +72,12 @@ class P_master_sto extends Abstract_model {
         }else {
             //do something
             //example:
-            
+
             $this->db->set('updated_date',"to_date('".date('Y-m-d')."','yyyy-mm-dd')",false);
             $this->record['updated_by'] = $userdata['user_name'];
-            
+
+
+            $this->record['org_path6'] = $this->record['sto3'];
             $this->record['org_path'] = $this->record['org_path1'] . '/' .
                                         $this->record['org_path2'] . '/' .
                                         $this->record['org_path3'] . '/' .
@@ -86,10 +85,11 @@ class P_master_sto extends Abstract_model {
                                         $this->record['org_path5'] . '/' .
                                         $this->record['org_path6'];
             $arr_org_path3 = explode(" " , $this->record['org_path3']);
-            //$this->db->set('recode',"'RE"."$arr_org_path3[1]"."'",false);
-            $this->record['recode'] = "RE" . $arr_org_path3[1];
 
+            $this->record['recode'] = "RE" . $arr_org_path3[1];
             $this->record['regsto'] = $this->record['recode'] . '/' . $this->record['org_path6'];
+
+
         }
         return true;
     }
