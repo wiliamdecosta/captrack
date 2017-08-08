@@ -63,7 +63,8 @@ class Users extends Abstract_model {
             //example:
             //$this->record['updated_date'] = date('Y-m-d');
             //if false please throw new Exception
-            unset($this->record['user_password']);
+            if(empty($this->record['user_password']))
+                unset($this->record['user_password']);
             $this->db->set('updated_date',"to_date('".date('Y-m-d')."','yyyy-mm-dd')",false);
             $this->record['updated_by'] = $userdata['user_name'];
 
