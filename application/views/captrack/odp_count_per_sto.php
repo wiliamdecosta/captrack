@@ -52,7 +52,7 @@
                     },
                     editrules: {required: true}
                 },
-                {label: 'PERIODE',name: 'periode',width: 150, align: "right",editable: true,
+                {label: 'PERIODE',name: 'periode',width: 150, align: "right",editable: true, hidden:true,
                     editoptions: {
                         size: 30,
                         maxlength:255,
