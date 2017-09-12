@@ -6,7 +6,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Report C2R Incremental Revenue</span>
+            <span>Report Incremental Revenue</span>
         </li>
     </ul>
 </div>
