@@ -85,6 +85,7 @@ class Auth extends CI_Controller
                         'user_name'             => '',
                         'user_email'            => '',
                         'user_full_name'        => '',
+                        'is_ldap'               => '',
                         'logged_in'             => false,
                         'location_name'         => null,
                         'location_code'         => null
