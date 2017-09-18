@@ -14,18 +14,17 @@
 <div class="space-4"></div>
 <div class="row">
     <div class="col-md-12">
-        <h2 class="info" style="display:none;">Oops, this report on construction <i class="fa fa-building"></i></h2>
+        <script type='text/javascript' src='https://smartanalytics0.telkom.co.id/javascripts/api/viz_v1.js'></script>
+        <div class='tableauPlaceholder' style='width: 1004px; height: 1662px;'>
+        <object class='tableauViz' width='1004' height='1662' style='display:none;'>
+            <param name='host_url' value='https%3A%2F%2Fsmartanalytics0.telkom.co.id%2F' />
+            <param name='site_root' value='&#47;t&#47;CapexAnalytics' />
+            <param name='name' value='CapexTrackingReportC2RKumulatifConsumer&#47;CapexTracking-C2RKum' />
+            <param name='tabs' value='yes' />
+            <param name='toolbar' value='yes' />
+            <param name='showVizHome' value='n' />
+            <param name='showShareOptions' value='true' />
+        </object>
+        </div>
     </div>
 </div>
-
-<script>
-    $(function() {
-        $(".info").fadeIn(2000)
-        window.setInterval("changeColor()", 1000);
-    });
-
-    function changeColor() {
-        var newColor = '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6);
-        $(".info").css('color',newColor);
-    }
-</script>
