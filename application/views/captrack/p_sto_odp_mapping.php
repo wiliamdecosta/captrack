@@ -51,7 +51,7 @@
                 {label: 'No Kontrak',name: 'no_kontrak',width: 250, align: "left",editable: false},
 
 
-                {label: 'Nama Tematik',name: 'param_master_nm_tematik_id',width: 100, align: "left", hidden:true, editable: true,
+                {label: 'Nama Tematik',name: 'param_master_tematik_id',width: 100, align: "left", hidden:true, editable: true,
                     edittype: 'text',
                     editrules: {edithidden: true, required:true}
                 },
