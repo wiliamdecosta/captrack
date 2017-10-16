@@ -21,7 +21,7 @@ class Auth extends CI_Controller
     }
 
     public function login() {
-        $username = $this->security->xss_clean($this->input->post('username'));
+        $username = strtolower($this->security->xss_clean($this->input->post('username')));
         $password = $this->security->xss_clean($this->input->post('password'));
 
         if(empty($username) or empty($password)) {
@@ -36,6 +36,10 @@ class Auth extends CI_Controller
 
         $md5pass = md5(trim($password));
 
+        if(count($row) == 0) {
+            $this->session->set_flashdata('error_message','Maaf, Username atau password Anda salah');
+            redirect(base_url().'auth/index');
+        }
 
         if($row['user_status'] != 1) {
             $this->session->set_flashdata('error_message','Maaf, User yang bersangkutan sudah tidak aktif. Silahkan hubungi administrator.');

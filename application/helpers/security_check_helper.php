@@ -45,4 +45,23 @@ function permission_check($permission_name='') {
 
 }
 
+function getUserRoles() {
+    $ci =& get_instance();
+    $user_id = $ci->session->userdata('user_id');
+
+    $sql = "select b.role_name
+            from role_user a
+            left join roles b on a.role_id = b.role_id
+            where a.user_id = ?";
+
+    $query = $ci->db->query($sql, array($user_id));
+    $row = $query->result_array();
+
+    $result = array();
+    foreach($row as $val) {
+        $result[] = $val['role_name'];
+    }
+    return $result;
+}
+
 ?>

@@ -9,7 +9,11 @@ class Home extends CI_Controller
 
     function index() {
         check_login();
-        $this->load->view('home/index');
+        if( in_array('USER', getUserRoles()) and count(getUserRoles()) == 1 ) {
+            redirect(base_url().'panel?module_id=2');
+        }else {
+            $this->load->view('home/index');
+        }
     }
 
     function load_content($id) {
