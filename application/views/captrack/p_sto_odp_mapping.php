@@ -109,8 +109,8 @@
 
             },
             //memanggil controller jqgrid yang ada di controller crud
-            editurl: '<?php echo WS_JQGRID."captrack.p_master_sto_controller/crud"; ?>',
-            caption: "Master STO"
+            editurl: '<?php echo WS_JQGRID."captrack.p_sto_odp_mapping_controller/crud"; ?>',
+            caption: "STO-ODP Mapping"
 
         });
 
