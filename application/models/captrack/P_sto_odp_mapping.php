@@ -76,6 +76,48 @@ class P_sto_odp_mapping extends Abstract_model
         }
         return true;
     }
+
+    function divre_combo(){
+        try {
+            $sql = "SELECT * FROM param_master_divre";
+            $query = $this->db->query($sql);
+
+            $items = $query->result_array();
+            echo '<select>';
+            foreach($items  as $item ){
+                echo '<option value="'.$item['param_master_divre_id'].'">'.$item['divre'].'</option>';
+            }
+            echo '</select>';
+            exit;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            exit;
+        }
+        
+    }
+
+    /*function readMasterSto($start, $limit){
+        try {
+            $sql = "SELECT * FROM param_master_sto";
+            $query = $this->db->query($sql);
+
+            $items = $query->result_array();
+            echo '<select>';
+            foreach($items  as $item ){
+                echo '<option value="'.$item['param_master_divre_id'].'">'.$item['divre'].'</option>';
+            }
+            echo '</select>';
+            return $items;
+            //exit;
+           // print_r($items);
+           // exit;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            exit;
+        }
+
+        
+    }*/
 }
 
 /* End of file Icons.php */

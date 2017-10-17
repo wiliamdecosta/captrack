@@ -290,6 +290,254 @@ class p_sto_odp_mapping_controller {
         return $data;
     }
 
+    function combo(){
+        $ci = & get_instance();
+        $ci->load->model('captrack/p_sto_odp_mapping');
+        $table = $ci->p_sto_odp_mapping;
+        $table->divre_combo();
+    }
+
+    function readLovSto() {
+
+        $start = getVarClean('current','int',0);
+        $limit = getVarClean('rowCount','int',5);
+
+        $sort = getVarClean('sort','str','param_master_sto_id');
+        $dir  = getVarClean('dir','str','asc');
+
+        $searchPhrase = getVarClean('searchPhrase', 'str', '');
+
+        $data = array('rows' => array(), 'success' => false, 'message' => '', 'current' => $start, 'rowCount' => $limit, 'total' => 0);
+
+        try {
+
+            $ci = & get_instance();
+            /*$ci->load->model('captrack/param_master_sto');
+            $table = $ci->param_master_sto;*/
+            $ci->load->model('captrack/param_master_sto');
+            $table = $ci->param_master_sto;
+            //$table->readMasterSto();
+
+            if(!empty($searchPhrase)) {
+                $table->setCriteria("upper(sto) like upper('%".$searchPhrase."%')");
+            }
+
+            $start = ($start-1) * $limit;
+            $items = $table->getAll($start, $limit, $sort, $dir);
+            $totalcount = $table->countAll();
+
+            $data['rows'] = $items;
+            $data['success'] = true;
+            $data['total'] = $totalcount;
+
+        }catch (Exception $e) {
+            $data['message'] = $e->getMessage();
+        }
+
+        return $data;
+    }
+
+    function readLovOdp() {
+
+        $start = getVarClean('current','int',0);
+        $limit = getVarClean('rowCount','int',5);
+
+        $sort = getVarClean('sort','str','param_master_odp_id');
+        $dir  = getVarClean('dir','str','asc');
+
+        $searchPhrase = getVarClean('searchPhrase', 'str', '');
+
+        $data = array('rows' => array(), 'success' => false, 'message' => '', 'current' => $start, 'rowCount' => $limit, 'total' => 0);
+
+        try {
+
+            $ci = & get_instance();
+            /*$ci->load->model('captrack/param_master_sto');
+            $table = $ci->param_master_sto;*/
+            $ci->load->model('captrack/param_master_odp');
+            $table = $ci->param_master_odp;
+            //$table->readMasterSto();
+
+            if(!empty($searchPhrase)) {
+                $table->setCriteria("upper(odp) like upper('%".$searchPhrase."%')");
+            }
+
+            $start = ($start-1) * $limit;
+            $items = $table->getAll($start, $limit, $sort, $dir);
+            $totalcount = $table->countAll();
+
+            $data['rows'] = $items;
+            $data['success'] = true;
+            $data['total'] = $totalcount;
+
+        }catch (Exception $e) {
+            $data['message'] = $e->getMessage();
+        }
+
+        return $data;
+    }
+
+    function readLovWbs() {
+
+        $start = getVarClean('current','int',0);
+        $limit = getVarClean('rowCount','int',5);
+
+        $sort = getVarClean('sort','str','param_master_wbs_id');
+        $dir  = getVarClean('dir','str','asc');
+
+        $searchPhrase = getVarClean('searchPhrase', 'str', '');
+
+        $data = array('rows' => array(), 'success' => false, 'message' => '', 'current' => $start, 'rowCount' => $limit, 'total' => 0);
+
+        try {
+
+            $ci = & get_instance();
+            /*$ci->load->model('captrack/param_master_sto');
+            $table = $ci->param_master_sto;*/
+            $ci->load->model('captrack/param_master_wbs');
+            $table = $ci->param_master_wbs;
+            //$table->readMasterSto();
+
+            if(!empty($searchPhrase)) {
+                $table->setCriteria("upper(wbs_name) like upper('%".$searchPhrase."%')");
+            }
+
+            $start = ($start-1) * $limit;
+            $items = $table->getAll($start, $limit, $sort, $dir);
+            $totalcount = $table->countAll();
+
+            $data['rows'] = $items;
+            $data['success'] = true;
+            $data['total'] = $totalcount;
+
+        }catch (Exception $e) {
+            $data['message'] = $e->getMessage();
+        }
+
+        return $data;
+    }
+
+
+    function readLovWitel() {
+
+        $start = getVarClean('current','int',0);
+        $limit = getVarClean('rowCount','int',5);
+
+        $sort = getVarClean('sort','str','param_master_witel_id');
+        $dir  = getVarClean('dir','str','asc');
+
+        $searchPhrase = getVarClean('searchPhrase', 'str', '');
+
+        $data = array('rows' => array(), 'success' => false, 'message' => '', 'current' => $start, 'rowCount' => $limit, 'total' => 0);
+
+        try {
+
+            $ci = & get_instance();
+            /*$ci->load->model('captrack/param_master_sto');
+            $table = $ci->param_master_sto;*/
+            $ci->load->model('captrack/param_master_witel');
+            $table = $ci->param_master_witel;
+            //$table->readMasterSto();
+
+            if(!empty($searchPhrase)) {
+                $table->setCriteria("upper(witel) like upper('%".$searchPhrase."%')");
+                $table->setCriteria("upper(recode) like upper('%".$searchPhrase."%')");
+            }
+
+            $start = ($start-1) * $limit;
+            $items = $table->getAll($start, $limit, $sort, $dir);
+            $totalcount = $table->countAll();
+
+            $data['rows'] = $items;
+            $data['success'] = true;
+            $data['total'] = $totalcount;
+
+        }catch (Exception $e) {
+            $data['message'] = $e->getMessage();
+        }
+
+        return $data;
+    }
+
+    function readLovNoKontrak() {
+
+        $start = getVarClean('current','int',0);
+        $limit = getVarClean('rowCount','int',5);
+
+        $sort = getVarClean('sort','str','param_master_no_kontrak_id');
+        $dir  = getVarClean('dir','str','asc');
+
+        $searchPhrase = getVarClean('searchPhrase', 'str', '');
+
+        $data = array('rows' => array(), 'success' => false, 'message' => '', 'current' => $start, 'rowCount' => $limit, 'total' => 0);
+
+        try {
+
+            $ci = & get_instance();
+            /*$ci->load->model('captrack/param_master_sto');
+            $table = $ci->param_master_sto;*/
+            $ci->load->model('captrack/param_master_no_kontrak');
+            $table = $ci->param_master_no_kontrak;
+            //$table->readMasterSto();
+
+            if(!empty($searchPhrase)) {
+                $table->setCriteria("upper(no_kontrak) like upper('%".$searchPhrase."%')");
+            }
+
+            $start = ($start-1) * $limit;
+            $items = $table->getAll($start, $limit, $sort, $dir);
+            $totalcount = $table->countAll();
+
+            $data['rows'] = $items;
+            $data['success'] = true;
+            $data['total'] = $totalcount;
+
+        }catch (Exception $e) {
+            $data['message'] = $e->getMessage();
+        }
+
+        return $data;
+    }
+
+    function readLovNmTematik() {
+
+        $start = getVarClean('current','int',0);
+        $limit = getVarClean('rowCount','int',5);
+
+        $sort = getVarClean('sort','str','param_master_tematik_id');
+        $dir  = getVarClean('dir','str','asc');
+
+        $searchPhrase = getVarClean('searchPhrase', 'str', '');
+
+        $data = array('rows' => array(), 'success' => false, 'message' => '', 'current' => $start, 'rowCount' => $limit, 'total' => 0);
+
+        try {
+
+            $ci = & get_instance();
+            /*$ci->load->model('captrack/param_master_sto');
+            $table = $ci->param_master_sto;*/
+            $ci->load->model('captrack/param_master_nm_tematik');
+            $table = $ci->param_master_nm_tematik;
+            //$table->readMasterSto();
+
+            if(!empty($searchPhrase)) {
+                $table->setCriteria("upper(nm_tematik) like upper('%".$searchPhrase."%')");
+            }
+
+            $start = ($start-1) * $limit;
+            $items = $table->getAll($start, $limit, $sort, $dir);
+            $totalcount = $table->countAll();
+
+            $data['rows'] = $items;
+            $data['success'] = true;
+            $data['total'] = $totalcount;
+
+        }catch (Exception $e) {
+            $data['message'] = $e->getMessage();
+        }
+
+        return $data;
+    }
 
 }
 
