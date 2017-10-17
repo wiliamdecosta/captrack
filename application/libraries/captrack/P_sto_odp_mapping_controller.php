@@ -359,7 +359,7 @@ class p_sto_odp_mapping_controller {
             //$table->readMasterSto();
 
             if(!empty($searchPhrase)) {
-                $table->setCriteria("upper(odp) like upper('%".$searchPhrase."%')");
+                $table->setCriteria("upper(odp_name) like upper('%".$searchPhrase."%')");
             }
 
             $start = ($start-1) * $limit;
@@ -440,8 +440,7 @@ class p_sto_odp_mapping_controller {
             //$table->readMasterSto();
 
             if(!empty($searchPhrase)) {
-                $table->setCriteria("upper(witel) like upper('%".$searchPhrase."%')");
-                $table->setCriteria("upper(recode) like upper('%".$searchPhrase."%')");
+                $table->setCriteria("upper(witel) like upper('%".$searchPhrase."%') OR upper(recode) like upper('%".$searchPhrase."%')");
             }
 
             $start = ($start-1) * $limit;
