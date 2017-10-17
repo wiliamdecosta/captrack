@@ -49,6 +49,22 @@ function showLOVODP(id, code) {
 function showLOVWBS(id, code) {
     modal_lov_param_master_wbs_show(id, code);
 }
+
+function clearLovInput() {
+    $('#form_wbs').val('');
+    $('#form_wbs_id').val('');
+    $('#form_odp').val('');
+    $('#form_odp_id').val('');
+    $('#form_sto').val('');
+    $('#form_sto_id').val('');
+    $('#form_nm_tematik').val('');
+    $('#form_nm_tematik_id').val('');
+    $('#form_no_kontrak').val('');
+    $('#form_no_kontrak_id').val('');
+    $('#form_witel').val('');
+    $('#form_witel_id').val('');
+}
+
 </script>
 <script>
 
@@ -67,7 +83,7 @@ function showLOVWBS(id, code) {
                     edittype: 'select',
                     editrules: {edithidden: true, required:true},
                     editoptions: {
-                        style: "width: 200px", 
+                        style: "width: 200px",
                         dataUrl: '<?php echo WS_JQGRID."captrack.p_sto_odp_mapping_controller/combo"; ?>'
                     }
                 },
@@ -79,7 +95,7 @@ function showLOVWBS(id, code) {
                     editoptions: {
                         "custom_element":function( value  , options) {
                             var elm = $('<span></span>');
- 
+
                             // give the editor time to initialize
                             setTimeout( function() {
                                 elm.append('<input id="form_witel_id" readonly type="hidden" class="FormElement form-control">'+
@@ -352,7 +368,7 @@ function showLOVWBS(id, code) {
                     swal({title: 'Attention', text: response.message, html: true, type: "warning"});
                 }
 
-            }, 
+            },
             //memanggil controller jqgrid yang ada di controller crud
             editurl: '<?php echo WS_JQGRID."captrack.p_sto_odp_mapping_controller/crud"; ?>',
             caption: "STO-ODP Mapping"
@@ -421,6 +437,10 @@ function showLOVWBS(id, code) {
                 beforeShowForm: function (e, form) {
                     var form = $(e[0]);
                     style_edit_form(form);
+
+                    setTimeout(function() {
+                        clearLovInput();
+                    },100);
                 },
                 afterShowForm: function(form) {
                     form.closest('.ui-jqdialog').center();
