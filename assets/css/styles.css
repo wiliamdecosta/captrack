@@ -62,3 +62,17 @@
 .btn {
     vertical-align:top !important;
 }
+
+.fixed-info {
+    position: fixed;
+    right: 10px;
+    top: 300px;
+    z-index: 50000;
+    width: 200px;
+    opacity: 0.5;
+}
+
+.fixed-info:hover {
+    opacity: 1;
+    cursor:pointer;
+}

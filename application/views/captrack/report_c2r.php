@@ -1,4 +1,5 @@
 <!-- breadcrumb -->
+
 <div class="page-bar">
     <ul class="page-breadcrumb">
         <li>
@@ -26,5 +27,15 @@
                 <param name='showShareOptions' value='true' />
             </object>
         </div>
+    </div>
+</div>
+
+<div class="fixed-info">
+    <div class="alert alert-warning">
+        <h4><strong>Info</strong></h4>
+        <ul>
+            <li>Sumber Data CAPEX berasal dari SMILE</li>
+            <li>Sumber Data REVENUE berasal dari billing i-SISKA</li>
+        </ul>
     </div>
 </div>
