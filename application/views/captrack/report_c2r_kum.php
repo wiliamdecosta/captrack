@@ -19,7 +19,7 @@
             <object class='tableauViz' width='1004' height='1662' style='display:none;'>
                 <param name='host_url' value='https%3A%2F%2Fsmartanalytics0.telkom.co.id%2F' />
                 <param name='site_root' value='&#47;t&#47;CapexAnalytics' />
-                <param name='name' value='CapexTrackingReportC2RKumulatifALLNasional-NEWSOURCE&#47;CapexTracking-C2RKum' />
+                <param name='name' value='CapexTrackingReportC2RKumulatifALLNasional-MIGRASI/CapexTracking-C2RKum' />
                 <param name='tabs' value='yes' />
                 <param name='toolbar' value='yes' />
                 <param name='showVizHome' value='n' />
